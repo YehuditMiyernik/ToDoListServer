@@ -40,8 +40,8 @@ app.MapPut("/{id}", async ([FromServices] TodoContext context, [FromRoute] strin
 {
     Item item = await context.Items.FindAsync(int.Parse(id));
     item.IsComplete = !item.IsComplete;
-    context.Items.Update(item);
-    context.SaveChangesAsync();
+    // context.Items.Update(item);
+    await context.SaveChangesAsync();
     return Results.Ok();
 });
 app.MapDelete("/{id}", async ([FromServices] TodoContext context, [FromRoute] string id) =>
